@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./components/card";
 import NavBar from "./components/NavBar";
 import "@material-tailwind/react/tailwind.css";
-import 'tailwindcss/tailwind.css'
+import "tailwindcss/tailwind.css";
 
 const App = () => {
   const appId = "c0036659";
@@ -12,17 +12,15 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("chicken");
 
-  
-  useEffect(()=>{
-    async function fetchData(){
+  useEffect(() => {
+    async function fetchData() {
       const response = await fetch(
-          `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}`
-       );
-       const data = await response.json();
-       setRecipes(data.hits);
-
+        `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}`
+      );
+      const data = await response.json();
+      setRecipes(data.hits);
     }
-    fetchData()
+    fetchData();
   }, [query]);
 
   const updateSearch = (e) => {
@@ -36,8 +34,12 @@ const App = () => {
   };
 
   return (
-    <React.Fragment >
-      <NavBar search={search} onUpdateSearch={updateSearch} onGetSearch={getSearch}/>
+    <React.Fragment>
+      <NavBar
+        search={search}
+        onUpdateSearch={updateSearch}
+        onGetSearch={getSearch}
+      />
       <div className=" flex flex-wrap  justify-around bg-gray-100 font-sans  pt-32">
         {recipes.map((r, index) => (
           <Card key={index} card={r.recipe}></Card>
