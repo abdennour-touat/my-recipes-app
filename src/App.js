@@ -19,7 +19,6 @@ const App = () => {
           `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}`
        );
        const data = await response.json();
-       console.log(data.hits)
        setRecipes(data.hits);
 
     }
@@ -39,7 +38,7 @@ const App = () => {
   return (
     <React.Fragment >
       <NavBar search={search} onUpdateSearch={updateSearch} onGetSearch={getSearch}/>
-      <div className=" flex flex-wrap  justify-around bg-gray-100 pt-10">
+      <div className=" flex flex-wrap  justify-around bg-gray-100 font-sans  pt-32">
         {recipes.map((r, index) => (
           <Card key={index} card={r.recipe}></Card>
         ))}
