@@ -1,39 +1,48 @@
-import React, { useContext } from "react";
-import { Link} from "react-router-dom";
-import Context from '../context';
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { DataContext } from "../context";
 
 
 export default function Home() {
-    const {state, setState} = useContext(Context);
-   
-
+  const { state, setState } = useContext(DataContext);
+  const [input, setInput] = useState("");
+  
   return (
-    <div className=" text-center w-screen h-screen pt-28 bg-red-50">
-      <h1 className="font-title text-8xl text-gray-800 ">
+    <div className=" flex-col-reverse justify-center text-center w-screen h-screen  pt-14 bg-red-50">
+      <h1 className="font-title text-6xl text-gray-800 md:text-8xl mx-2 mb-4">
         Welcome to my Recipes app!
       </h1>
       <img
-        className="w-1/6 h-1/2 m-auto opacity-80"
+        className="w-1/2 h-1/2 m-auto opacity-80 mb-4 md:w-1/4"
         src="https://www.svgrepo.com/show/89274/food.svg"
         alt="img"
       />
-      <Link
-        to={{
-          pathname: "/search",
-          state: {
-            fromNotifications: true,
-          },
-        }}
+
+      <form
+        className="flex flex-wrap  justify-center bg-red-50  rounded-md w-1/5 m-auto items-stretch  "
       >
-        <button
-          className=" w-auto px-6 h-16 text-2xl  mt-14  bg-green-400 hover:bg-green-500 hover:scale-105 transform duration-500 text-white font-bold font-mono rounded-xl "
-          onClick={()=> setState({ recipes: ['one'],
-          query: "test",})}
-          title="Search for a recipe"
+        <input
+          className=" py-4 appearance-none flex-grow border rounded text-xl px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 "
+          placeholder="Search for a Recipe..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></input>
+
+        <Link
+          to={{
+            pathname: "/search",
+          }}
         >
-          Find Recipe
-        </button>
-      </Link>
+          <button
+            type="submit"
+            onClick={()=> setState({ ...state, query: input })}
+            className="  px-12  h-16 text-xl mt-8 md:text-2xl  bg-green-400 hover:bg-green-500 hover:scale-105 transform duration-500 text-white font-bold font-mono rounded-xl "
+            title="Search for a recipe"
+          >
+            Find Recipe
+          </button>
+        </Link>
+      </form>
     </div>
   );
 }

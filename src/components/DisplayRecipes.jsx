@@ -1,51 +1,50 @@
 import Card from "./card";
 import NavBar from "./NavBar";
-import Context from '../context';
- 
-import React, {useState, useEffect, useContext} from 'react'
+import { DataContext, FetchContext } from "../context";
+import { useHistory } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
 
-export default function DisplayRecipes(props) {
-    const context = useContext(Context);
-  const appId = "c0036659";
-  const appKey = "a80a017565807050d26872ce0c66ca99";
-
-  const [recipes, setRecipes] = useState([]);
+function DisplayRecipes(props) {
+  const dataContext = useContext(DataContext);
+  const fetchRecipes = useContext(FetchContext);
+  const history = useHistory();
+  const { state, setState } = dataContext;
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
+
+  if ( state.query === "") {
+    history.push("/");
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}`
-      );
-      const data = await response.json();
-      setRecipes(data.hits);
-    }
-    fetchData();
-  }, [query]);
+    fetchRecipes(state.query).then((data) => {
+      setState({ ...state, recipes: data });
+    });
+    
+  }, [state.query]);
 
-  const updateSearch = (e) => {
-    setSearch(e.target.value);
-  };
 
-  const getSearch = (e) => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
-  };
 
-    return (
-        <>
-        <NavBar
+  return (
+    <>
+      <NavBar
         search={search}
-        onUpdateSearch={updateSearch}
-        onGetSearch={getSearch}
+        onUpdateSearch={(e) => {
+          setSearch(e.target.value);
+        }}
+        onGetSearch={(e)=>{
+          e.preventDefault()
+          setState({...state, query: search})
+          setSearch('');
+        }
+        }
       />
-      <div className=" flex flex-wrap  justify-center bg-gray-100 font-sans  pt-44">
-        {recipes.map((r, index) => (
+      <div className=" flex flex-wrap  justify-center bg-gray-100 font-sans  pt-32 md:pt-40 ">
+        {state.recipes.map((r, index) => (
           <Card key={index} card={r.recipe}></Card>
         ))}
       </div>
-        </>
-    )
+    </>
+  );
 }
+
+export default React.memo(DisplayRecipes);

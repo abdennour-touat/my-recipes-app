@@ -1,22 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, button } from "react";
 import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import Modal from "@material-tailwind/react/Modal";
 import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
-import Context from "../context";
+import {DataContext} from '../context';
 
 export default function NavBar(props) {
   const { onGetSearch, onUpdateSearch, search } = props;
   const [showModal, setShowModal] = useState(false);
   const [input, setInput] = useState("");
-  const context = useContext(Context);
+  const context = useContext(DataContext);
 
   const { state, setState } = context;
 
   const validate = () => {
-    setState({ ...state, query: input });
+    if(input){
+      setState({ ...state, query: input });
+
+    }
     setInput("");
     setShowModal(false);
   };
@@ -32,7 +35,6 @@ export default function NavBar(props) {
           placeholder="Search for a Recipe..."
           onKeyDown={(e) => e.key === "Enter" && validate()}
         />
-        {input}
       </ModalBody>
       <ModalFooter>
         <Button
@@ -46,9 +48,7 @@ export default function NavBar(props) {
         <Button
           color="pink"
           onClick={() => {
-            setState({ ...state, query: input });
-            setShowModal(false);
-            setInput("");
+           validate();
           }}
           ripple="light"
         >
@@ -57,7 +57,7 @@ export default function NavBar(props) {
       </ModalFooter>
     </Modal>
   );
-  
+
   return (
     <>
       {modal}
@@ -67,9 +67,9 @@ export default function NavBar(props) {
             My recipes App
           </h1>
         </Link>
-        <Button className="text-black" onClick={() => setShowModal(true)}>
+        <button  className="text-black" onClick={() => setShowModal(true)}>
           <SearchIcon fontSize="large" className="visible md:invisible mr-6" />
-        </Button>
+        </button>
 
         <form
           onSubmit={onGetSearch}
