@@ -1,4 +1,6 @@
-import FlashOnIcon from "@material-ui/icons/FlashOn";
+import FlashOnIcon from '@material-ui/icons/FlashOn';
+
+
 import LocationOnRoundedIcon from "@material-ui/icons/LocationOnRounded";
 import LocalHospitalRoundedIcon from "@material-ui/icons/LocalHospitalRounded";
 import React from 'react'
@@ -6,9 +8,11 @@ import React from 'react'
 export default function card(props) {
   const { label, calories, image, cuisineType, dietLabels } = props.card
   return (
-    <div className=" flex flex-wrap  max-w-sm m-2   mx-5  shadow-2xl mb-5 rounded-xl overflow-hidden hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer">
+    <div className=" flex flex-wrap  max-w-sm m-2  mx-20  shadow-2xl mb-8 rounded-xl hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer">
     <div className="flex-col bg-white pb-2 px-4 pt-3 pl-2 flex-grow text-sm text-gray-500">
-      <h5 className="font-semibold mb-2 font-cardHeader text-3xl text-black">{label}</h5>
+      <h5 className="font-semibold mb-2 pl-3 font-cardHeader text-3xl text-black">{label}</h5>
+      <div className='pl-4'>
+
       <p className="mb-2">
         <FlashOnIcon
           name="flashon"
@@ -37,6 +41,7 @@ export default function card(props) {
           ></LocalHospitalRoundedIcon>
           {dietLabels[0]}
         </p>: null}
+      </div>
     
     </div>
     <img className="rounded-xl " src={image} alt="img" />

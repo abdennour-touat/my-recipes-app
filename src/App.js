@@ -1,50 +1,39 @@
-import React, { useEffect, useState } from "react";
-import Card from "./components/card";
-import NavBar from "./components/NavBar";
-import "@material-tailwind/react/tailwind.css";
+import React, { useState } from "react";
+import Home from "./components/Home";
+import Context from './context'
 import "tailwindcss/tailwind.css";
+import DisplayRecipes from "./components/DisplayRecipes";
 
+import { Switch, Route } from "react-router-dom";
+const initialState = {
+  recipes: [],
+  query: "",
+};
 const App = () => {
-  const appId = "c0036659";
-  const appKey = "a80a017565807050d26872ce0c66ca99";
-
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        `https://api.edamam.com/search?q=${query}&app_id=${appId}&app_key=${appKey}`
-      );
-      const data = await response.json();
-      setRecipes(data.hits);
-    }
-    fetchData();
-  }, [query]);
-
-  const updateSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const getSearch = (e) => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
-  };
-
+  const [state, setState] = useState(initialState);
   return (
     <React.Fragment>
-      <NavBar
-        search={search}
-        onUpdateSearch={updateSearch}
-        onGetSearch={getSearch}
-      />
-      <div className=" flex flex-wrap  justify-around bg-gray-100 font-sans  pt-32">
-        {recipes.map((r, index) => (
-          <Card key={index} card={r.recipe}></Card>
-        ))}
-      </div>
+      {/* <Switch>
+        <Route path='/'>
+          <Home/>
+        </Route>
+        <Route path='/search'>
+          <DisplayRecipes/>
+        </Route>
+      </Switch>
+      <Link to='/search'>test</Link> */}
+      {/* <DisplayRecipes/> */}
+      <Context.Provider value={{state, setState}}>
+      <Switch>
+        <Route path="/search">
+          <DisplayRecipes />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+
+      </Context.Provider>
     </React.Fragment>
   );
 };
