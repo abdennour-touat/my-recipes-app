@@ -60,7 +60,7 @@ export default function NavBar(props) {
   return (
     <>
       {modal}
-      <nav className=" flex py-2 w-full justify-between items-center shadow px-2 bg-red-50  fixed z-50 md:justify-between ">
+      <header className=" flex py-2 w-full justify-between items-center shadow px-2 bg-red-50  fixed z-50 md:justify-between ">
         <Link to="/">
           <h1 className="text-5xl py-1 text-gray-900 truncate   font-title pl-3 ">
             My recipes App
@@ -87,7 +87,7 @@ export default function NavBar(props) {
             Search
           </button>
         </form>
-      </nav>
+      </header>
     </>
   );
 }
