@@ -5,7 +5,7 @@ import Modal from "@material-tailwind/react/Modal";
 import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
-import {DataContext} from '../context';
+import { DataContext } from "../context";
 
 export default function NavBar(props) {
   const { onGetSearch, onUpdateSearch, search } = props;
@@ -16,9 +16,8 @@ export default function NavBar(props) {
   const { state, setState } = context;
 
   const validate = () => {
-    if(input){
+    if (input) {
       setState({ ...state, query: input });
-
     }
     setInput("");
     setShowModal(false);
@@ -48,7 +47,7 @@ export default function NavBar(props) {
         <Button
           color="pink"
           onClick={() => {
-           validate();
+            validate();
           }}
           ripple="light"
         >
@@ -67,7 +66,7 @@ export default function NavBar(props) {
             My recipes App
           </h1>
         </Link>
-        <button  className="text-black" onClick={() => setShowModal(true)}>
+        <button className="text-black" onClick={() => setShowModal(true)}>
           <SearchIcon fontSize="large" className="visible md:invisible mr-6" />
         </button>
 

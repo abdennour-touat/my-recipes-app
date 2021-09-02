@@ -6,6 +6,7 @@ import { DataContext } from "../context";
 export default function Home() {
   const { state, setState } = useContext(DataContext);
   const [input, setInput] = useState("");
+  window.localStorage.removeItem('recipe');
   
   return (
     <div className=" flex-col-reverse justify-center text-center w-screen h-screen  pt-14 bg-red-50">
@@ -19,10 +20,10 @@ export default function Home() {
       />
 
       <form
-        className="flex flex-wrap  justify-center bg-red-50  rounded-md w-1/5 m-auto items-stretch  "
+        className="flex flex-wrap  justify-center bg-red-50  rounded-md w-96 m-auto items-stretch  "
       >
         <input
-          className=" py-4 appearance-none flex-grow border rounded text-xl px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 "
+          className="  py-4 w-96 px-8 appearance-none  border rounded-xl text-xl  text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 "
           placeholder="Search for a Recipe..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -42,6 +43,7 @@ export default function Home() {
             Find Recipe
           </button>
         </Link>
+        
       </form>
     </div>
   );

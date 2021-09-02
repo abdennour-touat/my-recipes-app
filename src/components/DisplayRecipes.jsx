@@ -1,4 +1,4 @@
-import Card from "./card";
+import Card from "./Card";
 import NavBar from "./NavBar";
 import { DataContext, FetchContext } from "../context";
 import { useHistory } from "react-router-dom";
@@ -10,11 +10,10 @@ function DisplayRecipes(props) {
   const history = useHistory();
   const { state, setState } = dataContext;
   const [search, setSearch] = useState("");
-
+  
   if ( state.query === "") {
     history.push("/");
   }
-
   useEffect(() => {
     fetchRecipes(state.query).then((data) => {
       setState({ ...state, recipes: data });
