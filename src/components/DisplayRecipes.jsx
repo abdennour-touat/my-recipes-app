@@ -15,12 +15,14 @@ function DisplayRecipes(props) {
     history.push("/");
   }
   useEffect(() => {
+    
     fetchRecipes(state.query).then((data) => {
       setState({ ...state, recipes: data });
     });
+
+   
     
   }, [state.query]);
-
 
 
   return (

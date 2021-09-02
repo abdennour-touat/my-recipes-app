@@ -5,32 +5,41 @@ import { DataContext } from "../context";
 import { useContext } from "react";
 import SideArticle from "../components/SideArticle";
 import MainArticle from "../components/MainArticle";
+import { useHistory } from "react-router-dom";
 
-export default function Recipe(props) {
+
+function Recipe(props) {
+  const history = useHistory();
   const Storage = window.localStorage;
   const { state } = useContext(DataContext);
 
-
+  const { id } = useParams();
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  console.log(state)
 
   if (state.query === '') {
+    if(!Storage.getItem('recipe')){
+      history.push("/");
 
-    state.query = 'random'
-    const obj = {recipe: JSON.parse(Storage.getItem('recipe'))}
-    state.recipes = [obj]
+      return null;
+      
+    }else{
+        const obj = {recipe: JSON.parse(Storage.getItem('recipe'))}
+        state.recipes = [obj]
+    }
+    
+    
   }
-
-  const { id } = useParams();
-
   const { recipes } = state;
 
   const { recipe } = recipes.find((element) => element.recipe.label === id);
 
   Storage.setItem('recipe', JSON.stringify(recipe))
+  
+
   
 
 
@@ -53,3 +62,4 @@ export default function Recipe(props) {
     </div>
   );
 }
+export default  React.memo(Recipe)
