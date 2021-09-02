@@ -7,41 +7,40 @@ import SideArticle from "../components/SideArticle";
 import MainArticle from "../components/MainArticle";
 import { useHistory } from "react-router-dom";
 
-
 function Recipe(props) {
   const history = useHistory();
   const Storage = window.localStorage;
+  Storage.removeItem('recipe')
   const { state } = useContext(DataContext);
 
   const { id } = useParams();
-  
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (state.query === '') {
-    if(!Storage.getItem('recipe')){
+  if (state.query === "") {
+    console.log(JSON.parse(Storage.getItem("recipe")));
+    if (!Storage.getItem("recipe")) {
       history.push("/");
-
+      console.log("empty");
       return null;
-      
-    }else{
-        const obj = {recipe: JSON.parse(Storage.getItem('recipe'))}
-        state.recipes = [obj]
+    } else {
+      const obj = { recipe: JSON.parse(Storage.getItem("recipe")) };
+      console.log(obj);
+      state.recipes = [obj];
+      console.log(state);
     }
-    
-    
   }
   const { recipes } = state;
 
-  const { recipe } = recipes.find((element) => element.recipe.label === id);
+  const { recipe } = recipes.find((element) => {
+    return element.recipe.label === id;
+  });
+  console.log(recipe, 'my recipe')
 
-  Storage.setItem('recipe', JSON.stringify(recipe))
-  
 
-  
-
+  Storage.setItem("recipe", JSON.stringify(recipe));
 
   return (
     <div className="bg-gray-100 ">
@@ -62,4 +61,4 @@ function Recipe(props) {
     </div>
   );
 }
-export default  React.memo(Recipe)
+export default React.memo(Recipe);
