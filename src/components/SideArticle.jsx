@@ -16,7 +16,7 @@ export default function SideArticle({
   cuisineType,
 }) {
   return (
-    <div className=" mt-20 shadow-xl rounded-2xl px-20 md:px-28 pb-14   text-xl text-center">
+    <div className=" mt-44 shadow-xl rounded-2xl px-20 md:px-28 pb-14   text-xl text-center">
       <img src={img} alt="img" className="rounded-xl m-auto mb-6" />
       <div className="  bg-white pb-2 px-4 pt-3 pl-2 text-sm text-gray-500 rounded-2xl mb-6">
         <h5 className="font-semibold mb-2 pl-3 font-cardHeader text-3xl text-black">

@@ -39,7 +39,7 @@ function DisplayRecipes(props) {
         }
         }
       />
-      <div className=" flex flex-wrap  justify-center bg-gray-100 font-sans  pt-32 md:pt-40 ">
+      <div className=" flex flex-wrap  justify-center bg-gray-100 font-sans   pt-44 md:pt-48 ">
         {state.recipes.map((r, index) => (
           <Card key={index} card={r.recipe}></Card>
         ))}
@@ -48,4 +48,4 @@ function DisplayRecipes(props) {
   );
 }
 
-export default React.memo(DisplayRecipes);
+export default DisplayRecipes;

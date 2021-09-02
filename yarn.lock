@@ -1523,7 +1523,7 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@material-tailwind/react@0.3.4":
+"@material-tailwind/react@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@material-tailwind/react/-/react-0.3.4.tgz#aaccb84d6b1dbe7a3cb790b6c8d4209081e031c0"
   integrity sha512-ri5nMD6Wv4WT5x+3B3jt1A8ZwHijprY8R3EmI5eXnmCNe+Wzyn0AeKcB6IIHhP7fcZVMjSpMBrn5XO700LhO5Q==
@@ -11217,7 +11217,7 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@17.0.2, react@^17.0.1:
+react@17.0.2, react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
