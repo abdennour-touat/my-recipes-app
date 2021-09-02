@@ -10,7 +10,7 @@ import { useHistory, useLocation } from "react-router-dom";
 function Recipe(props) {
   const history = useHistory();
   const location = useLocation();
-  console.log(location.state)
+
 
   const Storage = window.localStorage;
   const { state } = useContext(DataContext);
@@ -25,13 +25,12 @@ function Recipe(props) {
     console.log(JSON.parse(Storage.getItem("recipe")));
     if (!location.state) {
       history.push("/");
-      console.log("empty");
+
       return null;
     } else {
       const obj = { recipe: JSON.parse(Storage.getItem("recipe")) };
-      console.log(obj);
+
       state.recipes = [obj];
-      console.log(state);
     }
   }
   const { recipes } = state;

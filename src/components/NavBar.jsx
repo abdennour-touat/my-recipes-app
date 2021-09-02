@@ -1,67 +1,14 @@
-import React, { useState, useContext } from "react";
+
 import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
-// import Modal from "@material-tailwind/react/Modal";
-// // import ModalBody from "@material-tailwind/react/ModalBody";
-// import ModalFooter from "@material-tailwind/react/ModalFooter";
+
 import Button from "@material-tailwind/react/Button";
-import { DataContext } from "../context";
 
 export default function NavBar(props) {
   const { onGetSearch, onUpdateSearch, search } = props;
-  const [showModal, setShowModal] = useState(false);
-  const [input, setInput] = useState("");
-  const context = useContext(DataContext);
 
-  const { state, setState } = context;
 
-  const validate = () => {
-    if (input) {
-      setState({ ...state, query: input });
-    }
-    setInput("");
-    setShowModal(false);
-  };
 
-  // const modal = (
-  //   <Modal
-  //     size="sm"
-  //     active={showModal}
-  //     toggler={()=>
-  //       setShowModal(false)
-  //     }
-  //   >
-  //     <ModalBody>
-  //       <input
-  //         value={input}
-  //         onChange={(e) => setInput(e.target.value)}
-  //         type="text"
-  //         className="outline-none w-full"
-  //         placeholder="Search for a Recipe..."
-  //         onKeyDown={(e) => e.key === "Enter" && validate()}
-  //       />
-  //     </ModalBody>
-  //     <ModalFooter>
-  //       <Button
-  //         color="pink"
-  //         buttonType="link"
-  //         onClick={(e) => setShowModal(false)}
-  //         ripple="dark"
-  //       >
-  //         Cancel
-  //       </Button>
-  //       <Button
-  //         color="pink"
-  //         onClick={() => {
-  //           validate();
-  //         }}
-  //         ripple="light"
-  //       >
-  //         Search
-  //       </Button>
-  //     </ModalFooter>
-  //   </Modal>
-  // );
 
   return (
     <>
@@ -71,9 +18,6 @@ export default function NavBar(props) {
             My recipes App
           </h1>
         </Link>
-
-        {/* <Button color='black' className="text-black " onClick={() =>  setShowModal(true)}>
-        </Button> */}
 
         <form
           onSubmit={onGetSearch}
