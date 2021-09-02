@@ -11,7 +11,13 @@ export default function Card(props) {
 
   
   
-    <div onClick={()=>{history.push(`/${label}`)}}  className=" flex flex-wrap  max-w-sm m-2  mx-20  shadow-2xl mb-8 rounded-2xl hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer">
+    <div onClick={()=>{history.push({
+      pathname: `${label}`,
+      search: '?update=true',  // query string
+      state: {  // location state
+        recipeData: props.card, 
+      },
+    })}}  className=" flex flex-wrap  max-w-sm m-2  mx-20  shadow-2xl mb-8 rounded-2xl hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer">
       <div className="flex-col bg-white pb-2 px-4 pt-3 pl-2 flex-grow text-sm text-gray-500">
         <h5 className="font-semibold mb-2 pl-3 font-cardHeader text-3xl text-black">
           {label}

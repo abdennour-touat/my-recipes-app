@@ -5,12 +5,14 @@ import { DataContext } from "../context";
 import { useContext } from "react";
 import SideArticle from "../components/SideArticle";
 import MainArticle from "../components/MainArticle";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function Recipe(props) {
   const history = useHistory();
+  const location = useLocation();
+  console.log(location.state)
+
   const Storage = window.localStorage;
-  Storage.removeItem('recipe')
   const { state } = useContext(DataContext);
 
   const { id } = useParams();
@@ -21,7 +23,7 @@ function Recipe(props) {
 
   if (state.query === "") {
     console.log(JSON.parse(Storage.getItem("recipe")));
-    if (!Storage.getItem("recipe")) {
+    if (!location.state) {
       history.push("/");
       console.log("empty");
       return null;
@@ -37,7 +39,7 @@ function Recipe(props) {
   const { recipe } = recipes.find((element) => {
     return element.recipe.label === id;
   });
-  console.log(recipe, 'my recipe')
+
 
 
   Storage.setItem("recipe", JSON.stringify(recipe));
