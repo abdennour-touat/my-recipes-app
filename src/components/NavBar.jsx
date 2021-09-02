@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
-// import Modal from "@material-tailwind/react/Modal";
-// // import ModalBody from "@material-tailwind/react/ModalBody";
-// import ModalFooter from "@material-tailwind/react/ModalFooter";
+import Modal from "@material-tailwind/react/Modal";
+import ModalBody from "@material-tailwind/react/ModalBody";
+import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
 import { DataContext } from "../context";
 
@@ -23,55 +23,60 @@ export default function NavBar(props) {
     setShowModal(false);
   };
 
-  // const modal = (
-  //   <Modal
-  //     size="sm"
-  //     active={showModal}
-  //     toggler={()=>
-  //       setShowModal(false)
-  //     }
-  //   >
-  //     <ModalBody>
-  //       <input
-  //         value={input}
-  //         onChange={(e) => setInput(e.target.value)}
-  //         type="text"
-  //         className="outline-none w-full"
-  //         placeholder="Search for a Recipe..."
-  //         onKeyDown={(e) => e.key === "Enter" && validate()}
-  //       />
-  //     </ModalBody>
-  //     <ModalFooter>
-  //       <Button
-  //         color="pink"
-  //         buttonType="link"
-  //         onClick={(e) => setShowModal(false)}
-  //         ripple="dark"
-  //       >
-  //         Cancel
-  //       </Button>
-  //       <Button
-  //         color="pink"
-  //         onClick={() => {
-  //           validate();
-  //         }}
-  //         ripple="light"
-  //       >
-  //         Search
-  //       </Button>
-  //     </ModalFooter>
-  //   </Modal>
-  // );
+  const modal = (
+    <Modal
+      size="sm"
+      active={showModal}
+      toggler={()=>
+        setShowModal(false)
+      }
+    >
+      <ModalBody>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          type="text"
+          className="outline-none w-full"
+          placeholder="Search for a Recipe..."
+          onKeyDown={(e) => e.key === "Enter" && validate()}
+        />
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          color="pink"
+          buttonType="link"
+          onClick={(e) => setShowModal(false)}
+          ripple="dark"
+        >
+          Cancel
+        </Button>
+        <Button
+          color="pink"
+          onClick={() => {
+            validate();
+          }}
+          ripple="light"
+        >
+          Search
+        </Button>
+      </ModalFooter>
+    </Modal>
+  );
+  console.log(modal);
 
   return (
     <>
-      <header className=" flex py-2 w-full items-center shadow px-2 bg-red-50  fixed z-50  mb-80 justify-center md:justify-between">
+      <header className=" flex py-2 w-full justify-between items-center shadow px-2 bg-red-50  fixed z-50 md:justify-between ">
         <Link to="/">
           <h1 className="text-5xl py-1 text-gray-900 truncate   font-title pl-3 ">
             My recipes App
           </h1>
         </Link>
-
+        <SearchIcon
+          fontSize="large"
+          className="visible md:invisible mr-6"
+          onClick={() => setShowModal(true)}
+        />
         {/* <Button color='black' className="text-black " onClick={() =>  setShowModal(true)}>
         </Button> */}
 
@@ -94,24 +99,7 @@ export default function NavBar(props) {
           </Button>
         </form>
       </header>
-      <form
-        onSubmit={onGetSearch}
-        className=" visible md:invisible  bg-gray-100 inline-flex rounded-lg   md:flex   absolute top-24 inset-x-0 mx-11   "
-      >
-        <input
-          className=" appearance-none flex-grow border rounded-lg  py-2 text-xl px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 "
-          placeholder="Search for a recipe"
-          value={search}
-          onChange={onUpdateSearch}
-        ></input>
-        <Button
-          type="submit"
-          color="black"
-          className="bg-green-400 hover:bg-green-500 hover:scale-105 transform duration-500 text-white text-xl font-extrabold  rounded-xl ml-4 p-1 px-2"
-        >
-          <SearchIcon fontSize="large" className="p-0 " />
-        </Button>
-      </form>
+      {modal}
     </>
   );
 }
