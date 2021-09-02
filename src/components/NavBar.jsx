@@ -56,6 +56,7 @@ export default function NavBar(props) {
       </ModalFooter>
     </Modal>
   );
+  console.log(modal)
 
   return (
     <>
