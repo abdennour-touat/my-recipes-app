@@ -1,4 +1,4 @@
-import React, { useState, useContext, button } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import Modal from "@material-tailwind/react/Modal";
@@ -24,7 +24,13 @@ export default function NavBar(props) {
   };
 
   const modal = (
-    <Modal size="sm" active={showModal} toggler={() => setShowModal(false)}>
+    <Modal
+      size="sm"
+      active={showModal}
+      toggler={()=>
+        setShowModal(false)
+      }
+    >
       <ModalBody>
         <input
           value={input}
@@ -56,20 +62,23 @@ export default function NavBar(props) {
       </ModalFooter>
     </Modal>
   );
-  console.log(modal)
+  console.log(modal);
 
   return (
     <>
-      {modal}
       <header className=" flex py-2 w-full justify-between items-center shadow px-2 bg-red-50  fixed z-50 md:justify-between ">
         <Link to="/">
           <h1 className="text-5xl py-1 text-gray-900 truncate   font-title pl-3 ">
             My recipes App
           </h1>
         </Link>
-        <button className="text-black" onClick={() => setShowModal(true)}>
-          <SearchIcon fontSize="large" className="visible md:invisible mr-6" />
-        </button>
+        <SearchIcon
+          fontSize="large"
+          className="visible md:invisible mr-6"
+          onClick={() => setShowModal(true)}
+        />
+        {/* <Button color='black' className="text-black " onClick={() =>  setShowModal(true)}>
+        </Button> */}
 
         <form
           onSubmit={onGetSearch}
@@ -81,14 +90,16 @@ export default function NavBar(props) {
             value={search}
             onChange={onUpdateSearch}
           ></input>
-          <button
+          <Button
             type="submit"
+            color="black"
             className="invisible bg-green-400 hover:bg-green-500 hover:scale-105 transform duration-500 text-white text-xl font-extrabold px-4 rounded-xl ml-4 md:visible"
           >
             Search
-          </button>
+          </Button>
         </form>
       </header>
+      {modal}
     </>
   );
 }
