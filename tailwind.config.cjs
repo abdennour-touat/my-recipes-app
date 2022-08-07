@@ -2,7 +2,17 @@
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        title: ["dancing script"],
+        cardHeader: ["Quicksand"],
+      },
+    },
+
+    variants: {
+      extend: {},
+    },
+    plugins: [],
   },
   plugins: [],
-}
+};

@@ -12,7 +12,7 @@ export default function NavBar(props) {
 
   return (
     <>
-      <header className=" flex py-2 w-full items-center shadow px-2 bg-red-50  fixed z-50  mb-80 justify-center md:justify-between">
+      <header className=" flex py-2 w-full items-center shadow px-2 bg-red-50  sticky z-50   justify-center md:justify-between">
         <Link to="/">
           <h1 className="text-5xl py-1 text-gray-900 truncate   font-title pl-3 ">
             My recipes App

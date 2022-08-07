@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchData } from "../context";
+import { Circles } from "react-loader-spinner";
 function DisplayRecipes(props) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -64,7 +65,7 @@ function DisplayRecipes(props) {
           }}
         />
 
-        <div className=" flex flex-wrap  justify-center bg-gray-100 font-sans   pt-44 md:pt-48 ">
+        <div className=" flex flex-wrap px-8 justify-around  font-sans mt-24 md:mt-8 ">
           {data.map((r, index) => (
             <Card key={index} card={r.recipe}></Card>
           ))}
@@ -73,6 +74,5 @@ function DisplayRecipes(props) {
     );
   }
 }
-import { Circles } from "react-loader-spinner";
 
 export default DisplayRecipes;
