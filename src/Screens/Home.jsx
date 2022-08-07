@@ -1,5 +1,6 @@
 import { QueryCache, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { Circles } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
@@ -25,6 +26,8 @@ export default function Home() {
       <h1 className="font-title text-5xl text-gray-800 md:text-8xl mx-2 mb-4">
         Welcome to my Recipes app!
       </h1>
+
+
       <img
         className="w-1/2 h-1/2 m-auto opacity-80 mb-4 md:w-1/4"
         src="https://www.svgrepo.com/show/89274/food.svg"
