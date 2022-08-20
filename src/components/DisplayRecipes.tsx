@@ -2,27 +2,22 @@ import Card from "./Card";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchData } from "../context";
 import { Circles } from "react-loader-spinner";
 function DisplayRecipes(props) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [recipeName, setRecipeName] = useState();
-  const queryClient = useQueryClient();
 
+  // useEffect(() => {
 
-  const rcpName = queryClient.getQueryData(["recipeName"])
-  useEffect(() => {
+  //   if (!rcpName) {
+  //     navigate("/");
+  //   } else {
+  //     setRecipeName(rcpName)
+  //   }
+  // }, [recipeName]);
 
-    if (!rcpName) {
-      navigate("/");
-    } else {
-      setRecipeName(rcpName)
-    }
-  }, [recipeName]);
-
-  const { isLoading, isSuccess, data } = useQuery(["recipes", recipeName], () => fetchData(recipeName));
   if (isLoading) {
     return (
       <>
@@ -32,20 +27,24 @@ function DisplayRecipes(props) {
             setSearch(e.target.value);
           }}
           onGetSearch={(e) => {
-            e.preventDefault()
-            setRecipeName(search)
-            queryClient.setQueryData(["recipeName"], prev => {
-              return search
-            })
-            setSearch('');
+            e.preventDefault();
+            setRecipeName(search);
+            queryClient.setQueryData(["recipeName"], (prev) => {
+              return search;
+            });
+            setSearch("");
           }}
         />
         <div className="flex justify-center pt-28">
-          <Circles className="justify-center" color="#4ADE80" height={100} width={100} />
+          <Circles
+            className="justify-center"
+            color="#4ADE80"
+            height={100}
+            width={100}
+          />
         </div>
-
-      </>)
-
+      </>
+    );
   }
   if (isSuccess) {
     return (
@@ -56,12 +55,12 @@ function DisplayRecipes(props) {
             setSearch(e.target.value);
           }}
           onGetSearch={(e) => {
-            e.preventDefault()
-            setRecipeName(search)
-            queryClient.setQueryData(["recipeName"], prev => {
-              return search
-            })
-            setSearch('');
+            e.preventDefault();
+            setRecipeName(search);
+            queryClient.setQueryData(["recipeName"], (prev) => {
+              return search;
+            });
+            setSearch("");
           }}
         />
 
