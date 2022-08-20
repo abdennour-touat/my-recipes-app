@@ -43,7 +43,7 @@ export const getRecipes = createAsyncThunk<Recipe, ParamsType>(
   }
 );
 
-export const counterSlice = createSlice({
+export const recipeSlice = createSlice({
   name: "recipeData",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
@@ -72,9 +72,12 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { reset, setRecipeName } = counterSlice.actions;
+export const { reset, setRecipeName, setSelectedRecipe } = recipeSlice.actions;
+export const selectedRecipe = (state: RootState, recipe: RecipeState) =>
+  state.recipes.data;
+export const selectedStatus = (state: RootState, status: RequestState) =>
+  state.recipes.status;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.counter.value;
 
-export default counterSlice.reducer;
+export default recipeSlice;

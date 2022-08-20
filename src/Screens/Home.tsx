@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { Circles } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../App/hook";
 
 export default function Home() {
   const [input, setInput] = useState("");
+  const data = useAppSelector((state) => state.recipes);
   // Access the client
   const navigation = useNavigate();
   const handleSearch = (e) => {
