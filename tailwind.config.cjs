@@ -1,8 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx}"],
+  content: ["./src/**/*.{html,js,jsx,tsx,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        title: ["dancing script"],
+        cardHeader: ["Quicksand"],
+      },
+    },
+
+    variants: {
+      extend: {},
+    },
+    plugins: [],
   },
   plugins: [],
-}
+};

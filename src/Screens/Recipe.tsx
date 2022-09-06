@@ -4,16 +4,12 @@ import RecipeNavBar from "../components/RecipeNavBar";
 import SideArticle from "../components/SideArticle";
 import MainArticle from "../components/MainArticle";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 
 const Recipe = () => {
   const [recipe, setRecipe] = useState();
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
-  const query = useQuery("recipeName");
-  console.log(query)
-
 
   return (
     <div>hello</div>

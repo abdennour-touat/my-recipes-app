@@ -1,25 +1,21 @@
-import { QueryCache, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Circles } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../App/hook";
+import { getRecipes, setRecipeName } from "../features/recipe/recipeSlice";
 
 export default function Home() {
   const [input, setInput] = useState("");
+  const dispatch = useAppDispatch();
   // Access the client
-  const queryClient = useQueryClient()
   const navigation = useNavigate();
-  const handleSearch = (e) => {
+  const handleSearch = (
+    e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
     e.preventDefault();
-    handleSetRecipeName(input);
+    dispatch(setRecipeName(input));
+    dispatch(getRecipes({ recipeName: input, recipesNumber: 5 }));
     navigation("search");
-  }
-  const handleSetRecipeName = (recipeName) => {
-    queryClient.setQueryData(["recipeName"], prev => {
-
-      return recipeName
-    })
-  }
-
+  };
 
   return (
     <div className=" flex-col-reverse justify-center text-center w-screen h-screen  pt-14 bg-red-50">
@@ -27,16 +23,13 @@ export default function Home() {
         Welcome to my Recipes app!
       </h1>
 
-
       <img
         className="w-1/2 h-1/2 m-auto opacity-80 mb-4 md:w-1/4"
         src="https://www.svgrepo.com/show/89274/food.svg"
         alt="img"
       />
 
-      <form
-        className="flex flex-wrap  justify-center bg-red-50  rounded-md w-96 m-auto items-stretch  "
-      >
+      <form className="flex flex-wrap  justify-center bg-red-50  rounded-md w-96 m-auto items-stretch  ">
         <input
           className="  py-4 w-96 px-8 appearance-none  border rounded-xl text-xl  text-gray-800 leading-tight focus:outline-none focus:shadow-outline bg-gray-200 "
           placeholder="Search for a Recipe..."
@@ -52,8 +45,6 @@ export default function Home() {
         >
           Find Recipe
         </button>
-
-
       </form>
     </div>
   );
