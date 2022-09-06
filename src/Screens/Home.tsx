@@ -1,17 +1,19 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { Circles } from "react-loader-spinner";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../App/hook";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../App/hook";
+import { getRecipes, setRecipeName } from "../features/recipe/recipeSlice";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const data = useAppSelector((state) => state.recipes);
+  const dispatch = useAppDispatch();
   // Access the client
   const navigation = useNavigate();
-  const handleSearch = (e) => {
+  const handleSearch = (
+    e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
     e.preventDefault();
+    dispatch(setRecipeName(input));
+    dispatch(getRecipes({ recipeName: input, recipesNumber: 5 }));
     navigation("search");
   };
 

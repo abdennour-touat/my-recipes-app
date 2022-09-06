@@ -31,7 +31,7 @@ const initialState = {
   status: "" as RequestState,
 };
 //async function to get the data from the api
-export const getRecipes = createAsyncThunk<Recipe, ParamsType>(
+export const getRecipes = createAsyncThunk<Recipe[], ParamsType>(
   "recipes/getRecipes",
   async ({ recipeName, recipesNumber }, { rejectWithValue }) => {
     try {
@@ -63,7 +63,7 @@ export const recipeSlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(getRecipes.fulfilled, (state, action) => {
-      state.data.selectedRecipe = action.payload;
+      state.data.recipes = action.payload;
       state.status = action.meta.requestStatus;
     });
     builder.addCase(getRecipes.rejected, (state, action) => {
