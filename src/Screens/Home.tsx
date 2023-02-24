@@ -4,15 +4,17 @@ import { useStore } from "../App/hook";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const fetchdata = useStore((state) => state.getRecipe);
+  const fetchdata = useStore((state) => state.getRecipeCard);
+  const getRecipes = useStore((state) => state.searchRecipe);
   // Access the client
   const navigation = useNavigate();
   const handleSearch = (
     e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
-    fetchdata();
-    // navigation("search");
+
+    getRecipes(input);
+    navigation("search");
   };
 
   return (
