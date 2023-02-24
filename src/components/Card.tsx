@@ -4,14 +4,18 @@ import { useNavigate } from "react-router-dom";
 import LocationOnRoundedIcon from "@material-ui/icons/LocationOnRounded";
 import LocalHospitalRoundedIcon from "@material-ui/icons/LocalHospitalRounded";
 import React from "react";
+// import { useAppDispatch } from "../App/hook";
+// import { setSelectedRecipe } from "../features/recipe/recipeSlice";
 
 export default function Card(props: Recipe) {
   const { id, image, imageType, title } = props;
-  const history = useNavigate();
+  const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
   return (
     <div
       onClick={() => {
-        history(`${title}`);
+        navigate(`${title}`);
+        // dispatch(setSelectedRecipe({ id, image, imageType, title }));
       }}
       className="max-w-xl w-96   shadow-2xl mb-8  hover:scale-105 hover:shadow-2xl transform duration-500 cursor-pointer "
     >
