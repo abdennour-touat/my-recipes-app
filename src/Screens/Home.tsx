@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../App/hook";
-import { getRecipes, setRecipeName } from "../features/recipe/recipeSlice";
+import { useStore } from "../App/hook";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const dispatch = useAppDispatch();
+  const fetchdata = useStore((state) => state.getRecipe);
   // Access the client
   const navigation = useNavigate();
   const handleSearch = (
     e: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) => {
     e.preventDefault();
-    dispatch(setRecipeName(input));
-    dispatch(getRecipes({ recipeName: input, recipesNumber: 5 }));
-    navigation("search");
+    fetchdata();
+    // navigation("search");
   };
 
   return (

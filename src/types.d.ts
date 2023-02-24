@@ -9,3 +9,9 @@ type ParamsType = {
   recipeName: string;
   recipesNumber: number;
 };
+
+interface RecipeDetails {
+  summary: string;
+  title: string;
+  analyzedInstructions: Array;
+}

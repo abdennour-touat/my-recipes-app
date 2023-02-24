@@ -4,31 +4,34 @@ import RecipeNavBar from "../components/RecipeNavBar";
 import SideArticle from "../components/SideArticle";
 import MainArticle from "../components/MainArticle";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Recipe = () => {
-  const [recipe, setRecipe] = useState();
+  const [recipeDetails, setRecipeDetails] = useState();
   const navigate = useNavigate();
   const location = useLocation();
   const { id } = useParams();
 
+  // useEffect(() => {
+  // }, []);
   return (
-    <div>hello</div>
-    // <div className="bg-gray-100 ">
-    //   <RecipeNavBar />
-    //   <div className="flex flex-wrap ">
-    //     <SideArticle
-    //       img={recipe?.image}
-    //       cautions={recipe?.cautions}
-    //       calories={recipe?.calories}
-    //       dietLabels={recipe?.dietLabels}
-    //       dishType={recipe?.dishType}
-    //       healthLabels={recipe?.healthLabels}
-    //       label={recipe?.label}
-    //       cuisineType={recipe?.cuisineType}
-    //     />
-    //     <MainArticle ingredients={recipe?.ingredients} />
-    //   </div>
-    // </div>
+    <div className="bg-gray-100 ">
+      <RecipeNavBar />
+      <div className="flex flex-wrap ">
+        {/* <img src={selectedRecipe.image} alt={selectedRecipe.id} /> */}
+        {/* <SideArticle
+          img={recipe?.image}
+          cautions={recipe?.cautions}
+          calories={recipe?.calories}
+          dietLabels={recipe?.dietLabels}
+          dishType={recipe?.dishType}
+          healthLabels={recipe?.healthLabels}
+          label={recipe?.label}
+          cuisineType={recipe?.cuisineType}
+        />
+        <MainArticle ingredients={recipe?.ingredients} /> */}
+      </div>
+    </div>
   );
 };
 export default Recipe;
