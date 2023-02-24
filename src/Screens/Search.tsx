@@ -1,22 +1,15 @@
 import Card from "../components/Card";
 import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { Circles } from "react-loader-spinner";
 import { useStore } from "../App/hook";
-import { stat } from "fs";
-// import { useAppDispatch, useAppSelector } from "../App/hook";
-// import { getRecipes, setRecipeName } from "../features/recipe/recipeSlice";
 function Search() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  // const dispatch = useAppDispatch();
-  // const { data, status } = useAppSelector((state) => state.recipes);
   const { data, isloading, query } = useStore((state) => state);
-
+  const getRecipes = useStore((state) => state.searchRecipe);
   useEffect(() => {
-    console.log(query);
-
     if (!query) {
       navigate("/");
     }
@@ -42,6 +35,7 @@ function Search() {
         }}
         onGetSearch={(e: { preventDefault: () => void }) => {
           e.preventDefault();
+          getRecipes(search);
           setSearch("");
         }}
       />

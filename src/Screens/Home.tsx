@@ -13,8 +13,7 @@ export default function Home() {
   ) => {
     e.preventDefault();
 
-    getRecipes("pizza");
-    // fetchdata(4632);
+    getRecipes(input);
     navigation("search");
   };
 
